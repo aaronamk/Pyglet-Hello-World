@@ -1,0 +1,3 @@
+[submodule "Pyglet"]
+	path = Pyglet
+	url = https://github.com/adamlwgriffiths/Pyglet.git
