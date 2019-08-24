@@ -54,7 +54,7 @@ class Pacman(Entity):
         self.speed_x = d.value[0] * self.speed
         self.speed_y = d.value[1] * self.speed
         self.rotation = d.value[2]
-        self.scale_y = -1 if (d == Direction.West) else 1
+        self.scale_x = -1 if d is Direction.West else 1
         self.desired_direction = None
 
     def stop(self):

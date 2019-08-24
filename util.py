@@ -11,7 +11,7 @@ class Direction(Enum):
     North = [0,1, 270]
     East = [1,0, 0]
     South = [0,-1, 90]
-    West = [-1,0, 180]
+    West = [-1,0, 0]
 
 def distance(point_1=(0, 0), point_2=(0, 0)):
     """Returns the distance between two points"""
