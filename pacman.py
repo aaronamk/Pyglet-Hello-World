@@ -33,19 +33,29 @@ class Pacman(Entity):
         super(Pacman, self).update(dt)
 
         if self.key_handler[key.W]:
+            self.desired_direction = Direction.North
             self.turn(Direction.North)
         if self.key_handler[key.S]:
+            self.desired_direction = Direction.South
             self.turn(Direction.South)
         if self.key_handler[key.D]:
+            self.desired_direction = Direction.East
             self.turn(Direction.East)
         if self.key_handler[key.A]:
+            self.desired_direction = Direction.West
             self.turn(Direction.West)
         
         self.check_bounds()
 
     def turn(self, d):
+        """Sets the direction of the lady
+            d -- Direction
+        """
         self.speed_x = d.value[0] * self.speed
         self.speed_y = d.value[1] * self.speed
+        self.rotation = d.value[2]
+        self.scale_y = -1 if (d == Direction.West) else 1
+        self.desired_direction = None
 
     def stop(self):
         self.speed_x = 0
