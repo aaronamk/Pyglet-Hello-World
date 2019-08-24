@@ -9,6 +9,7 @@ from pyglet.window import Window, key
 
 from entity import Entity
 import util
+from util import Direction
 
 class Pacman(Entity):
     """Pacman Entity controlled by user.
@@ -24,6 +25,7 @@ class Pacman(Entity):
         self.speed = 100
         self.key_handler = key.KeyStateHandler()
         self.event_handlers = [self, self.key_handler]
+        self.desired_direction = Direction.West
 
     def update(self, dt):
         """This method should be called every frame.
@@ -31,31 +33,19 @@ class Pacman(Entity):
         super(Pacman, self).update(dt)
 
         if self.key_handler[key.W]:
-            self.move_up()
+            self.turn(Direction.North)
         if self.key_handler[key.S]:
-            self.move_down()
+            self.turn(Direction.South)
         if self.key_handler[key.D]:
-            self.move_right()
+            self.turn(Direction.East)
         if self.key_handler[key.A]:
-            self.move_left()
+            self.turn(Direction.West)
         
         self.check_bounds()
 
-    def move_up(self):
-        self.speed_x = 0
-        self.speed_y = self.speed
-
-    def move_down(self):
-        self.speed_x = 0
-        self.speed_y = -self.speed
-
-    def move_right(self):
-        self.speed_x = self.speed
-        self.speed_y = 0
-
-    def move_left(self):
-        self.speed_x = -self.speed
-        self.speed_y = 0
+    def turn(self, d):
+        self.speed_x = d.value[0] * self.speed
+        self.speed_y = d.value[1] * self.speed
 
     def stop(self):
         self.speed_x = 0
