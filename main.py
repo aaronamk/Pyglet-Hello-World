@@ -7,30 +7,41 @@ sys.path.append(cwd + "/Pyglet/pyglet")
 import pyglet
 from pyglet.window import key
 
+from entity import Entity
+from pacman import Pacman
+
 #Set resource location
 pyglet.resource.path = ['./Pictures']
 pyglet.resource.reindex()
 
 #Create game window
-pacman_window = pyglet.window.Window()
+pacman_window = pyglet.window.Window(800, 800)
 
 #entity list
-entity_list = None
+entity_list = []
 
 #Images
-player_image = pyglet.resource.image('player.jpg')
+entity_batch = pyglet.graphics.Batch()
 
-@pacman_window.event
-def on_key_press(symbol, modifiers):
-    pass
-    #if symbol == key.W:
-        
-    #if symbol == key.S:
-        
+
+def init():
+    #player
+    player = Pacman(x=400, y=200, batch=entity_batch)
+    pacman_window.push_handlers(player.key_handler)
+    entity_list.append(player)
 
 @pacman_window.event
 def on_draw():
-    pacman_window.clear
+    pacman_window.clear()
+    entity_batch.draw()
+
+def update(dt):
+    for entity in entity_list:
+        entity.update(dt)
 
 if __name__ == '__main__':
+    init()
+
+    pyglet.clock.schedule_interval(update, 1/120.0)
+
     pyglet.app.run()

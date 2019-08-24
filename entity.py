@@ -5,11 +5,12 @@ sys.path.append(cwd + "/Pyglet/pyglet")
 
 #Import statements
 import pyglet
+
 import util
 
-
 class Entity(pyglet.sprite.Sprite):
-    """A sprite with physical properties such as speed. Adapted from Pyglet example"""
+    """A sprite with physical properties such as speed. Adapted from Pyglet example
+    """
 
     def __init__(self, *args, **kwargs):
         super(Entity, self).__init__(*args, **kwargs)
@@ -28,7 +29,8 @@ class Entity(pyglet.sprite.Sprite):
         self.event_handlers = []
 
     def update(self, dt):
-        """This method should be called every frame."""
+        """This method should be called every frame.
+        """
 
         # Update position according to speed and time
         self.x += self.speed_x * dt
@@ -38,11 +40,12 @@ class Entity(pyglet.sprite.Sprite):
         self.check_bounds()
 
     def check_bounds(self):
-        """Use the classic Asteroids screen wrapping behavior."""
+        """Use the classic Asteroids screen wrapping behavior.
+        """
         min_x = -self.image.width / 2
         min_y = -self.image.height / 2
         max_x = 800 + self.image.width / 2
-        max_y = 600 + self.image.height / 2
+        max_y = 800 + self.image.height / 2
         if self.x < min_x:
             self.x = max_x
         if self.y < min_y:
@@ -53,7 +56,8 @@ class Entity(pyglet.sprite.Sprite):
             self.y = min_y
 
     def collides_with(self, other_object):
-        """Determine if this object collides with another."""
+        """Determine if this object collides with another.
+        """
 
         # Calculate distance between object centers that would be a collision,
         # assuming square resources

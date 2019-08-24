@@ -5,8 +5,6 @@ sys.path.append(cwd + "/Pyglet/pyglet")
 
 #Import statements
 import pyglet, math
-import util
-
 
 def distance(point_1=(0, 0), point_2=(0, 0)):
     """Returns the distance between two points"""

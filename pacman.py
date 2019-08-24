@@ -8,6 +8,7 @@ import pyglet
 from pyglet.window import Window, key
 
 from entity import Entity
+import util
 
 class Pacman(Entity):
     """Pacman Entity controlled by user.
@@ -16,7 +17,11 @@ class Pacman(Entity):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, pyglet.resource.image('player.jpg'), **kwargs)
 
-        self.speed = 70
+        self.image.width = 48
+        self.image.height = 48
+        util.center_image(self.image)
+        
+        self.speed = 100
         self.key_handler = key.KeyStateHandler()
         self.event_handlers = [self, self.key_handler]
 
@@ -33,6 +38,8 @@ class Pacman(Entity):
             self.move_right()
         if self.key_handler[key.A]:
             self.move_left()
+        
+        self.check_bounds()
 
     def move_up(self):
         self.speed_x = 0
