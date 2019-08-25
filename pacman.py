@@ -14,7 +14,6 @@ from util import Direction
 class Pacman(Entity):
     """Pacman Entity controlled by user.
     """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, pyglet.resource.image('player.jpg'), **kwargs)
 
