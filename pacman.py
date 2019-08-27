@@ -44,7 +44,15 @@ class Pacman(Entity):
             self.desired_direction = Direction.West
             self.turn(Direction.West)
         
+        if self.desired_direction and self.check_turn():
+            self.turn(self.desired_direction)
+            self.desired_direction = None
+
         self.check_bounds()
+
+    def check_turn(self):
+        if not (self.x + 25) % 50:
+            return True
 
     def turn(self, d):
         """Sets the direction of the lady
@@ -54,7 +62,6 @@ class Pacman(Entity):
         self.speed_y = d.value[1] * self.speed
         self.rotation = d.value[2]
         self.scale_x = -1 if d is Direction.West else 1
-        self.desired_direction = None
 
     def stop(self):
         self.speed_x = 0

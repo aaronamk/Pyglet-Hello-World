@@ -9,7 +9,7 @@ from pyglet.window import key
 
 from entity import Entity
 from pacman import Pacman
-from tiles import Bricks, Grass 
+from board import Board 
 
 #Set resource location
 pyglet.resource.path = ['./Pictures']
@@ -26,20 +26,12 @@ entity_batch = pyglet.graphics.Batch()
 
 
 def init():
+    #board
     board = []
-    board_file = open("board.txt", "r")
-    for row in range(14):
-        x_counter = 25
-        for square in board_file.readline():
-            if square == 'g':
-                entity_list.append(Grass(x=x_counter, y=675-50*row, batch=entity_batch))
-                #board[row].append()
-            elif square == 'b':
-                entity_list.append(Bricks(x=x_counter, y=675-50*row, batch=entity_batch))
-            x_counter+=50
+    sunky = Board("board.txt", entity_list, entity_batch)
     
     #player
-    player = Pacman(x=400, y=200, batch=entity_batch)
+    player = Pacman(x=425, y=175, batch=entity_batch)
     pacman_window.push_handlers(player.key_handler)
     entity_list.append(player)
 
