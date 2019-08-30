@@ -1,3 +1,6 @@
 [submodule "Pyglet"]
 	path = Pyglet
 	url = https://github.com/adamlwgriffiths/Pyglet.git
+[submodule "pyglet"]
+	path = pyglet
+	url = https://github.com/pyglet/pyglet.git

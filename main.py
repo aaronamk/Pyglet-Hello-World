@@ -1,7 +1,7 @@
 #Tell main where Pyglet is
 import sys, os
 cwd = os.getcwd()
-sys.path.append(cwd + "/Pyglet/pyglet")
+sys.path.append(cwd + "/pyglet")
 
 #Import statements
 import pyglet
