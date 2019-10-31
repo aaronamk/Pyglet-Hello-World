@@ -1,4 +1,4 @@
-# pyglet_test
+# Pyglet Hello World
 
 This is to test that GitHub, Pyglet, and anything else needed to code for our club is working on your computer.
 
